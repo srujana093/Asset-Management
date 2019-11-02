@@ -1,0 +1,84 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+        <p *ngIf="assetService.assets.length==0">Add assets</p>
+        <p *ngIf="assetService.assets.length>0">Click on assets to insert & view items</p>
+      <div class="col-sm-4">
+        <form class="form-block" [formGroup]="addAssetForm" (ngSubmit)="addAsset(addAssetForm)">
+
+
+          <div class="form-group">
+            <label class="form-control-placeholder" for="assetId" autocomplete="false">Asset id</label>
+            <input type="text" id="assetId" formControlName="assetId" class="form-control input-field" required>
+
+            <span class="help-block error-block"
+              [hidden]="!addAssetForm.get('assetId').hasError('required') || !addAssetForm.controls['assetId'].touched">Please
+              enter Id</span>
+          </div>
+          <div class="form-group">
+            <label class="form-control-placeholder" for="assetName" autocomplete="false">Asset name</label>
+            <input type="text" id="assetName" formControlName="assetName" class="form-control input-field" required>
+
+            <span class="help-block error-block"
+              [hidden]="!addAssetForm.get('assetName').hasError('required') || !addAssetForm.controls['assetName'].touched">Please
+             enter Asset name</span>
+            <span class="help-block error-block"
+              [hidden]="!addAssetForm.get('assetName').hasError('pattern') || !addAssetForm.controls['assetName'].touched">Invalid
+              name</span>
+            <span class="help-block error-block"
+              [hidden]="!addAssetForm.get('assetName').hasError('minlength') || addAssetForm.get('assetName').hasError('pattern') || !addAssetForm.controls['assetName'].touched">Minimum
+              characters error</span>
+            <span class="help-block error-block"
+              [hidden]="!addAssetForm.get('assetName').hasError('maxlength') || addAssetForm.get('assetName').hasError('pattern') || !addAssetForm.controls['assetName'].touched">Maximum
+              characters error</span>
+
+          </div>
+          
+          <div class="form-group">
+
+
+            <button type="submit" class="btn btn-primary ">Add</button>
+           
+
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class=container>
+      <table class="table table-bordered" class="table table-striped">
+          <thead>
+            <tr>
+            <th>Asset id</th>
+            <th>Asset Name</th>
+            <!-- <th>Email</th> -->
+            
+            
+          </tr>
+        </thead>
+        <tbody *ngFor="let asset of assets">
+          <tr (click)="itemInfo(asset.assetId)" routerLinkActive="active">
+          <td>{{asset.assetId}}</td>
+          <td>{{asset.assetName}}</td>
+          <!-- <td>{{users.email}}</td> -->
+      
+        </tr>
+      </tbody>
+        </table>
+  </div>
+</body>
+
+<router-outlet></router-outlet>
