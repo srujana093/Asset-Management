@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <form class="form-block" (ngSubmit)="addItem(addItemForm)"  [formGroup]="addItemForm">
+
+
+        <div class="form-group">
+          <label class="form-control-placeholder" for="id" autocomplete="false">Item id</label>
+          <input type="text" id="id" formControlName="id" class="form-control input-field" required>
+
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('id').hasError('required') || !addItemForm.controls['id'].touched">Please
+            enter Id</span>
+        </div>
+        <div class="form-group">
+          <label class="form-control-placeholder" for="item_name" autocomplete="false">Item name</label>
+          <input type="text" id="item_name" formControlName="item_name" class="form-control input-field" required>
+
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('item_name').hasError('required') || !addItemForm.controls['item_name'].touched">Please
+           enter Item name</span>
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('item_name').hasError('pattern') || !addItemForm.controls['item_name'].touched">Invalid
+            name</span>
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('item_name').hasError('minlength') || addItemForm.get('item_name').hasError('pattern') || !addItemForm.controls['item_name'].touched">Minimum
+            characters error</span>
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('item_name').hasError('maxlength') || addItemForm.get('item_name').hasError('pattern') || !addItemForm.controls['item_name'].touched">Maximum
+            characters error</span>
+
+        </div>
+        <div class="form-group">
+          <label class="form-control-placeholder" for="date_of_manufacture" autocomplete="false">Manufacture Date</label>
+          <input type="date" id="date_of_manufacture" formControlName="date_of_manufacture" class="form-control input-field" required>
+
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('date_of_manufacture').hasError('required') || !addItemForm.controls['date_of_manufacture'].touched">Please
+           select date of Manufacture</span>
+        </div>
+        <div class="form-group">
+          <label class="form-control-placeholder" for="quantity" autocomplete="false">Quantity</label>
+          <input type="number" id="quantity" formControlName="quantity" class="form-control input-field" required>
+
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('quantity').hasError('required') || !addItemForm.controls['quantity'].touched">Please
+           enter quantity</span>
+        </div>
+        
+        
+        <div class="form-group">
+          <label class="form-control-placeholder" for="date_of_purchase" autocomplete="false">Purchase Date</label>
+          <input type="date" id="date_of_purchase" formControlName="date_of_purchase" class="form-control input-field" required>
+
+          <span class="help-block error-block"
+            [hidden]="!addItemForm.get('date_of_purchase').hasError('required') || !addItemForm.controls['date_of_purchase'].touched">Please
+           select date of Purchase</span>
+        </div>
+        
+        <div class="form-group">
+
+
+          <button type="submit" class="btn btn-primary ">Add</button>
+         
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<div class=container>
+  <table class="table table-bordered" class="table table-striped">
+      <thead>
+        <tr>
+        <th>Id</th>
+        <th>Item Name</th>
+        <th>Date of Manufacture</th>
+        <th>Quantity</th>
+        <th>Date of Purchase</th>
+    
+        
+        
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of items">
+      <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.item_name}}</td>
+      <td>{{item.date_of_manufacture}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.date_of_purchase}}</td>
+  
+    </tr>
+  </tbody>
+    </table>
+</div>
